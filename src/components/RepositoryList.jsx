@@ -1,19 +1,23 @@
-import { Counter } from "./Counter"
+
 import { RepositoryItem } from "./RepositoryItem"
 import '../styles/repositories.scss'
-
-const repository = {
-    name: "Atividade",
-    description: "Descrição da Atividade",
-    link: "https://github.com/gabrieladutra/copyDW2"
-}
-
+import { useState, useEffect } from "react"
 
 export function RepositoryList(){
+    const [repositories, setRepositories] = useState([])
+   useEffect(() => {
+    fetch('https://api.github.com/users/gabrieladutra/repos').then(response => response.json()).then(data=>setRepositories(data))
+   }, [])
+    
     return(
-                <>
-                    <RepositoryItem repository={repository}/>
-                    <Counter/>
-                </>
+         <section className="repository-list">
+            <h1> Lista de repositórios
+            </h1>
+            <ul>
+              {repositories.map(repository => {return < RepositoryItem repository ={repository} key={repository.id}/>})}
+            
+
+            </ul>
+         </section>    
     )
 }

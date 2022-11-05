@@ -1,5 +1,5 @@
 import { RepositoryList } from "./components/RepositoryList";
-import './styles/styles.scss'
+import './styles/repositories.scss'
 export function App(){
-    return <RepositoryList/>
+    return (<RepositoryList/>)
 }
